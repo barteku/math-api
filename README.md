@@ -19,6 +19,24 @@ used doctrine fixtures to populate test data.<br/>
 model based on doctrine, update with doctrine migrations.
 <br/>
 
+## test requests
+``
+{
+  "expression": {"fn": "*", "a": "sales", "b": 2},
+  "security": "ABC"
+}
+``<br/><br/><br/>
+``
+{
+  "expression": {
+    "fn": "-", 
+    "a": {"fn": "-", "a": "eps", "b": "shares"}, 
+    "b": {"fn": "-", "a": "assets", "b": "liabilities"}
+  },
+  "security": "CDE"
+}
+``
+
 
 ## Symfony Docker
 
