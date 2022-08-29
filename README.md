@@ -10,6 +10,9 @@ GET /api
     "expression": <Expression>
   }
  ``
+ <br/>
+ new aggregate function can be added by extending ``App\ApiFunction\BaseApiFunction`` and registering it in config ``app.availabale_api_functions``
+ 
  <br/><br/>
 used doctrine fixtures to populate test data.<br/>
 ``
