@@ -29,7 +29,7 @@ class SecurityDenormalizer implements DenormalizerInterface
 
     public function supportsDenormalization(mixed $data, string $type, string $format = null)
     {
-        return is_array($data) && array_key_exists('symbol', $data);
+        return $type === Security::class;
     }
 
 }

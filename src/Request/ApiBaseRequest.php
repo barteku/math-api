@@ -7,6 +7,7 @@ namespace App\Request;
 use App\Entity\Security;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class ApiBaseRequest
@@ -16,11 +17,15 @@ class ApiBaseRequest
 
     private ApiRequestSerializer $serializer;
 
+    private RequestStack $request;
 
-    public function __construct(ValidatorInterface $validator, ApiRequestSerializer $serializer)
+
+    public function __construct(ValidatorInterface $validator, ApiRequestSerializer $serializer, RequestStack $request)
     {
         $this->validator = $validator;
         $this->serializer = $serializer;
+        $this->request = $request;
+
         $this->populate();
     }
 
@@ -47,19 +52,14 @@ class ApiBaseRequest
         }
     }
 
-    public function getRequest(): Request
-    {
-        return Request::createFromGlobals();
-    }
-
     protected function populate(): void
     {
-        foreach ($this->getRequest()->toArray() as $property => $value) {
+        foreach ($this->request->getMainRequest()->toArray() as $property => $value) {
             if (property_exists($this, $property)) {
                 if($property === 'expression'){
-                    $this->{$property} = $this->serializer->denormalize($value, ApiExpression::class, 'json');
+                    $this->{$property} = $this->serializer->denormalize($value, ApiExpression::class, 'json', []);
                 }elseif($property === 'security') {
-                    $this->{$property} = $this->serializer->denormalize(['symbol' => $value], Security::class, 'json');
+                    $this->{$property} = $this->serializer->denormalize(['symbol' => $value], Security::class, 'json', []);
                 }
             }
         }

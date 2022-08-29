@@ -1,4 +1,26 @@
-# Symfony Docker
+# The task
+Json data interpreter
+
+GET /api
+<br/>
+
+``
+   {
+    "security": <String>,
+    "expression": <Expression>
+  }
+ ``
+ <br/><br/>
+used doctrine fixtures to populate test data.<br/>
+``
+   docker exec math-api-php-1 php bin/console doctrine:fixtures:load --no-interaction
+``
+<br/><br/>
+model based on doctrine, update with doctrine migrations.
+<br/>
+
+
+## Symfony Docker
 
 A [Docker](https://www.docker.com/)-based installer and runtime for the [Symfony](https://symfony.com) web framework, with full [HTTP/2](https://symfony.com/doc/current/weblink.html), HTTP/3 and HTTPS support.
 

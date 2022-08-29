@@ -26,14 +26,13 @@ class ApiRequestSerializer
 
 
 
-    public function denormalize($value){
+    public function denormalize($value, $type, $format, $context){
         $apiFunctionDenormalizer = new ApiExpressionDenormalizer($this->availableApiFunctions, $this->objectManager);
         $serializer = new Serializer([$apiFunctionDenormalizer, new SecurityDenormalizer($this->objectManager) ], [new JsonEncoder()]);
 
         $apiFunctionDenormalizer->setSerializer($serializer);
 
-
-        return $serializer->denormalize($value, ApiExpression::class, 'json');
+        return $serializer->denormalize($value, $type, $format, $context);
 
     }
 

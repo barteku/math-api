@@ -9,8 +9,8 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: FactRepository::class)]
 class Fact
 {
-    #[ORM\Column(length: 255)]
-    private string $value;
+    #[ORM\Column(type:"decimal", precision: 3)]
+    private float $value;
 
     #[ORM\Id]
     #[ORM\ManyToOne(targetEntity:"Attribute", inversedBy:"facts")]
@@ -39,12 +39,12 @@ class Fact
         return $this->id;
     }
 
-    public function getValue(): ?string
+    public function getValue(): ?float
     {
         return $this->value;
     }
 
-    public function setValue(string $value): self
+    public function setValue(float $value): self
     {
         $this->value = $value;
 
