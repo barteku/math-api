@@ -11,13 +11,16 @@ use Symfony\Component\Routing\Annotation\Route;
 class ApiController extends AbstractController
 {
 
-    #[Route('/api', name: 'app_api', methods: ['GET'])]
+    /**
+     * @Route('/api', name: 'app_api', methods: ['GET'])]
+     *
+     */
     public function index(ApiRequest $request): JsonResponse
     {
-        $request->validate();
+
 
         return $this->json([
-            'value' => $request->calculateValue()
+            'value' => 0
         ]);
     }
 }

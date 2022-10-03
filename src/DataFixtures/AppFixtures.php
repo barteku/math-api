@@ -8,6 +8,9 @@ use Doctrine\Persistence\ObjectManager;
 class AppFixtures extends Fixture
 {
 
+    /**
+     * @param ObjectManager $manager
+     */
     public function load(ObjectManager $manager): void
     {
         $filesToImport = [
@@ -33,7 +36,11 @@ class AppFixtures extends Fixture
         }
     }
 
-
+    /**
+     * @param string $className
+     * @param array $attributes
+     * @param ObjectManager $manager
+     */
     private function createEntity(string $className, array $attributes, ObjectManager $manager): void
     {
         $class = sprintf("%s\%s",'App\Entity', $className);

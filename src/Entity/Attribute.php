@@ -8,19 +8,27 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: AttributeRepository::class)]
-#[ORM\Index(name: "name_idx", columns: ["name"])]
+/**
+ * @ORM\Entity(repositoryClass: AttributeRepository::class)
+ * @ORM\Index(name: "name_idx", columns: ["name"])
+ */
 class Attribute
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column
+     */
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    /**
+     * @ORM\Column(length: 255)
+     */
     private ?string $name = null;
 
-    #[ORM\OneToMany(targetEntity:"Fact", mappedBy:"attribute")]
+    /**
+     * @ORM\OneToMany(targetEntity:"Fact", mappedBy:"attribute")
+     */
     private ?Collection $facts;
 
     /**

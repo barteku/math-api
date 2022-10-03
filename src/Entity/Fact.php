@@ -6,20 +6,29 @@ use App\Repository\FactRepository;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: FactRepository::class)]
+/**
+ * @ORM\Entity(repositoryClass: FactRepository::class)
+ *
+ */
 class Fact
 {
-    #[ORM\Column(type:"decimal", precision: 3)]
+    /**
+     * @ORM\Column(type:"decimal", precision: 3)
+     */
     private float $value;
 
-    #[ORM\Id]
-    #[ORM\ManyToOne(targetEntity:"Attribute", inversedBy:"facts")]
-    #[ORM\JoinColumn(name:"attribute_id", referencedColumnName:"id")]
+    /**
+     * @ORM\Id
+     * @ORM\ManyToOne(targetEntity:"Attribute", inversedBy:"facts")
+     * @ORM\JoinColumn(name:"attribute_id", referencedColumnName:"id")
+     */
     private Attribute $attribute;
 
-    #[ORM\Id]
-    #[ORM\ManyToOne(targetEntity:"Security", inversedBy:"facts")]
-    #[ORM\JoinColumn(name:"security_id", referencedColumnName:"id")]
+    /**
+     * @ORM\Id
+     * @ORM\ManyToOne(targetEntity:"Security", inversedBy:"facts")
+     * @ORM\JoinColumn(name:"security_id", referencedColumnName:"id")
+     */
     private Security $security;
 
     /**
